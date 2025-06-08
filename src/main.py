@@ -339,6 +339,41 @@ async def checkout(callback_query: CallbackQuery):
         await callback_query.answer("Не удалось оформить заказ")
 
 
+@dp.message(Command("about"))
+async def about_command(message: types.Message):
+    about_text = """
+<b>🏪 О нашем магазине</b>
+
+Мы - современный онлайн-магазин модной одежды, предлагающий:
+• Качественные материалы (100% хлопок, премиальные ткани)
+• Стильные и актуальные модели
+• Доступные цены и регулярные скидки
+• Быструю доставку по всей России
+
+<b>📅 Год основания:</b> 2020
+<b>⭐ Довольных клиентов:</b> более 10 000
+
+<b>📱 Контакты:</b>
+Телефон: +7 (XXX) XXX-XX-XX
+Адрес: г. Москва, ул. ПК, 123
+Часы работы: Пн-Пт 10:00-20:00, Сб-Вс 11:00-18:00
+
+Для возврата в меню нажмите /start"""
+
+    # Создаем клавиатуру с кнопками
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🔙 В меню", callback_data="main_menu")],
+        [InlineKeyboardButton(text="📞 Связаться", url="https://t.me/tabo0oo")],
+        [InlineKeyboardButton(text="🛒 Перейти к покупкам", callback_data="category_t-shirts")]
+    ])
+
+    await message.answer_photo(
+        photo="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_666c3d5dbdac467014320755_666c426761a30954faafcb95/scale_1200",  # Замените на реальное фото магазина
+        caption=about_text,
+        parse_mode="HTML",
+        reply_markup=keyboard
+    )
+
 @dp.callback_query(lambda c: c.data == "main_menu")
 async def process_back_to_main(callback_query: CallbackQuery):
     try:
