@@ -360,7 +360,6 @@ async def about_command(message: types.Message):
 
 Для возврата в меню нажмите /start"""
 
-    # Создаем клавиатуру с кнопками
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="🔙 В меню", callback_data="main_menu")],
         [InlineKeyboardButton(text="📞 Связаться", url="https://t.me/tabo0oo")],
@@ -368,7 +367,7 @@ async def about_command(message: types.Message):
     ])
 
     await message.answer_photo(
-        photo="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_666c3d5dbdac467014320755_666c426761a30954faafcb95/scale_1200",  # Замените на реальное фото магазина
+        photo="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_666c3d5dbdac467014320755_666c426761a30954faafcb95/scale_1200",
         caption=about_text,
         parse_mode="HTML",
         reply_markup=keyboard
